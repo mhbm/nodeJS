@@ -6,6 +6,27 @@ module.exports = function(app) {
         res.send('OK.');
     });
 
+    app.put('/pagamentos/pagamento/:id', function(req, res) {
+
+        var pagamento = {};
+        var id = req.params.id;
+
+        pagamento.id = id;
+        pagamento.status = 'CONFIRMADO';
+
+        var connection = app.persistence.connectionFactory();
+        var pagamentoDao = new app.persistence.PagamentoDao(connection);
+
+        pagamentoDao.atualiza(pagamento, function(erro) {
+            if (erro) {
+                res.status(500).send(erro);
+                return;
+            }
+            res.send(pagamento);
+        });
+
+    });
+
     app.post('/pagamentos/pagamento', [
         // username must be an email
         check('nome').not().isEmpty().withMessage('O campo nome é obrigatório'),
