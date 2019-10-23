@@ -39,16 +39,17 @@ module.exports = function(app) {
         var pagamentoDao = new app.persistence.PagamentoDao(connection);
 
         pagamentoDao.salva(pagamento, function(erro, resultado) {
-
             if (erro) {
-                res.send(erro);
+                console.log('Erro ao inserir no banco:' + erro);
+                res.status(500).send(erro);
             } else {
                 console.log('pagamento criado');
-                res.json(pagamento);
+                res.location('/pagamentos/pagamento/' +
+                    resultado.insertId);
+
+                res.status(201).json(pagamento);
             }
-
-
-        })
+        });
 
     });
 }
