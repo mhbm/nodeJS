@@ -9,10 +9,13 @@
     "consign": "^0.1.6",
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
+    "memcache": "^0.3.0",
+    "memcached": "^2.2.2",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.3",
     "restify": "^8.4.0",
     "restify-clients": "^2.6.7",
+    "server": "^1.0.19",
     "soap": "^0.30.0"
   }
 }
