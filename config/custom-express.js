@@ -16,6 +16,7 @@ module.exports = function() {
     consign()
         .include('controller')
         .then('persistence')
+        .then('servicos')
         .into(app);
 
     return app;
