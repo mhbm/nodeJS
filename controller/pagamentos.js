@@ -1,5 +1,7 @@
 const { check, validationResult } = require('express-validator');
 
+var logger = require('../servicos/logger.js');
+
 module.exports = function(app) {
     app.get('/pagamentos', function(req, res) {
         console.log("Recebido a requisição de teste.");
@@ -11,6 +13,8 @@ module.exports = function(app) {
         var id = req.params.id;
         console.log("consultando pagamento: " + id);
 
+        logger.info('consultando pagamento: ' + id);
+        
         var memcachedClient = app.servicos.memcachedClient();
 
         memcachedClient.get('pagamento-' + id, function(erro, retorno) {

@@ -6,3 +6,7 @@ valor float,
 status varchar(100),
 data datetime
 )
+
+---SE DER PROBLEMA NA INSERCAO NO BANCO, UTILIZAR OS DOIS COMANDOS ABAIXOS
+ALTER USER 'root'@'localhost' IDENTIFIED BY '';
+LTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ''

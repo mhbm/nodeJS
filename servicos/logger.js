@@ -1,19 +1,25 @@
-const winston = require('winston');
+//const winston = require('winston');
+const {transports, createLogger, format} = require('winston');
+
 const path = require('path');
 
 
 const filename = path.join('logs/', 'created-logfile.log');
 
 
-const logger = winston.createLogger({
+module.exports = createLogger({
+  format: 
+      format.combine(
+        format.timestamp(),
+        format.json()
+      ),
     transports: [
-      new winston.transports.Console(),
-      new winston.transports.File({ filename })
-
+      new transports.Console({'timestamp':true}),
+      new transports.File({ filename })
     ]
   });
 
-
+/*
 logger.log('info', 'Log utilizando o parametro info');
 logger.info('utilizando a função info');
 
@@ -80,3 +86,4 @@ logger.log({
   logger.log('error', 'Important error: ', new Error('Error passed as meta'));
   
   logger.error(new Error('Error as info'));
+  */
