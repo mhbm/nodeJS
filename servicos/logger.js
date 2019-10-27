@@ -7,6 +7,12 @@ const path = require('path');
 const filename = path.join('logs/', 'created-logfile.log');
 
 
+const fs = require('fs');
+
+if(!fs.existsSync('logs')) {
+  fs.mkdirSync('logs');  
+}
+
 module.exports = createLogger({
   format: 
       format.combine(
